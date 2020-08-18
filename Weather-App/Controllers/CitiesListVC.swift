@@ -11,9 +11,13 @@ import UIKit
 class CitiesListVC: UITableViewController {
     
     var cities = [City]()
+    var filteredCities = [City]()
+    
+    var isSearching = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureSearch()
         fetchCities()
         configureTable()
     }
@@ -31,6 +35,18 @@ class CitiesListVC: UITableViewController {
         }
     }
     
+    private func configureSearch() {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Enter city"
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        searchController.searchBar.returnKeyType = .done
+        searchController.searchBar.delegate = self
+        
+        navigationItem.searchController = searchController
+    }
+    
     private func configureTable() {
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.reuseID)
@@ -41,19 +57,18 @@ class CitiesListVC: UITableViewController {
     
 }
 
+// MARK: - TableView
+
 extension CitiesListVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cities.count
+        return isSearching ? filteredCities.count : cities.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.reuseID) as! CityTableViewCell
         
-        let imageName = indexPath.row % 2 == 0 ? "Temp3" : "Temp1"
-        cell.cityImageView.image = UIImage(named: imageName)
-        
-        cell.set(city: cities[indexPath.row])
+        cell.set(city: isSearching ? filteredCities[indexPath.row] : cities[indexPath.row], atRow: indexPath.row)
         
         return cell
     }
@@ -61,10 +76,27 @@ extension CitiesListVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 
+// MARK: - UISearchResultsUpdating
 
-extension CitiesListVC: UISearchBarDelegate {
+extension CitiesListVC: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            isSearching = false
+            tableView.reloadData()
+            return
+        }
+        
+        isSearching = true
+        filteredCities = cities.filter({$0.name.contains(filter)})
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
     
 }
 

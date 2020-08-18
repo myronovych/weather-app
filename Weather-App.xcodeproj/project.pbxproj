@@ -16,6 +16,8 @@
 		53409A0D24EBEF6300D216C1 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53409A0C24EBEF6300D216C1 /* City.swift */; };
 		53409A0F24EBEFD500D216C1 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53409A0E24EBEFD500D216C1 /* Coordinates.swift */; };
 		53409A1124EBF02400D216C1 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53409A1024EBF02400D216C1 /* CityTableViewCell.swift */; };
+		53409A1624EC071800D216C1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53409A1524EC071800D216C1 /* NetworkManager.swift */; };
+		53409A1824EC0B0000D216C1 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53409A1724EC0B0000D216C1 /* Api.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		53409A0C24EBEF6300D216C1 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		53409A0E24EBEFD500D216C1 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		53409A1024EBF02400D216C1 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		53409A1524EC071800D216C1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		53409A1724EC0B0000D216C1 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		53409A0824EBE8B200D216C1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				53409A1724EC0B0000D216C1 /* Api.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 		53409A1424EC063D00D216C1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				53409A1524EC071800D216C1 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -198,8 +204,10 @@
 				53409A1124EBF02400D216C1 /* CityTableViewCell.swift in Sources */,
 				534099F624EBE5C900D216C1 /* CitiesListVC.swift in Sources */,
 				534099F224EBE5C900D216C1 /* AppDelegate.swift in Sources */,
+				53409A1624EC071800D216C1 /* NetworkManager.swift in Sources */,
 				53409A0D24EBEF6300D216C1 /* City.swift in Sources */,
 				534099F424EBE5C900D216C1 /* SceneDelegate.swift in Sources */,
+				53409A1824EC0B0000D216C1 /* Api.swift in Sources */,
 				53409A0F24EBEFD500D216C1 /* Coordinates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

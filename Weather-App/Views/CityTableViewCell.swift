@@ -13,7 +13,7 @@ class CityTableViewCell: UITableViewCell {
     
     var city: City?
     
-    let cityImageView = UIImageView()
+    let cityImageView = UIImageView(image: UIImage(systemName: "questionmark.diamond.fill")?.withTintColor(.gray))
     let cityLabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,10 +25,17 @@ class CityTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(city: City) {
+    func set(city: City, atRow row: Int) {
         self.city = city
         
         cityLabel.text = city.name
+        
+        let imageURL = row % 2 == 0 ? ImageUrl.evenImageURL : ImageUrl.oddImageURL
+        
+        NetworkManager.shared.downloadImage(urlString: imageURL) { [weak self] image in
+            guard let self = self else { return }
+            DispatchQueue.main.async { self.cityImageView.image = image }
+        }
     }
     
     private func configureCell() {
