@@ -9,5 +9,5 @@
 import Foundation
 
 struct Weather: Decodable {
-    let weatherDescription: String
+    let description: String
 }

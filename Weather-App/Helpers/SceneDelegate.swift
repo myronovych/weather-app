@@ -25,9 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func createdCitiesListVC() -> UINavigationController {
         let citiesVC = CitiesListVC()
         citiesVC.title = "Cities"
-        
         let navVC = UINavigationController(rootViewController: citiesVC)
-        
+        navVC.navigationBar.prefersLargeTitles = true
+
         return navVC
     }
 

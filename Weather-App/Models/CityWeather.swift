@@ -12,5 +12,4 @@ struct CityWeather: Decodable {
     let coord: Coordinates
     let weather: [Weather]
     let main: MainWeatherInfo
-    let wind: Wind
 }

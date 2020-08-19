@@ -22,6 +22,11 @@ class CitiesListVC: UITableViewController {
         configureTable()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+    }
+    
     private func fetchCities() {
         if let url = Bundle.main.url(forResource: "city.list", withExtension: "json") {
             do {
@@ -48,7 +53,6 @@ class CitiesListVC: UITableViewController {
     }
     
     private func configureTable() {
-        navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.reuseID)
         
         tableView.rowHeight = 80
@@ -75,6 +79,14 @@ extension CitiesListVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let destVC = CityWeatherVC()
+        let city = isSearching ? filteredCities[indexPath.row] : cities[indexPath.row]
+        destVC.title = city.name
+        
+        destVC.city = city
+        destVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(destVC, animated: true)
     }
     
 }
@@ -90,7 +102,7 @@ extension CitiesListVC: UISearchResultsUpdating, UISearchBarDelegate {
         }
         
         isSearching = true
-        filteredCities = cities.filter({$0.name.contains(filter)})
+        filteredCities = cities.filter({$0.name.lowercased().contains(filter.lowercased())})
         tableView.reloadData()
     }
     
