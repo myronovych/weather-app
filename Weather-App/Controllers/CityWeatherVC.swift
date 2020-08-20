@@ -81,21 +81,23 @@ class CityWeatherVC: UIViewController {
         tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = 80
+        tableView.layer.cornerRadius = 20
+        tableView.layer.borderWidth = 0.5
         
         let padding: CGFloat = 12
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: mapView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -25),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
     
     private func configureWeatherInfos() {
         weatherInfoTop.setLabels(weather: cityWeather!, firstType: .currTemp, secondType: .description)
         weatherInfoMiddle.setLabels(weather: cityWeather!, firstType: .minTemp, secondType: .maxTemp)
-        weatherInfoBottom.setLabels(weather: cityWeather!, firstType: .humidity, secondType: .pressure)
+        weatherInfoBottom.setLabels(weather: cityWeather!, firstType: .humidity, secondType: .wind)
     }
 }
 

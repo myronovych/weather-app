@@ -33,8 +33,8 @@ class WeatherInfoTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             weatherInfo.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            weatherInfo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            weatherInfo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            weatherInfo.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            weatherInfo.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             weatherInfo.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
         ])
     }

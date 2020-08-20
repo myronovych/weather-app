@@ -75,8 +75,8 @@ class WeatherInfoView: UIView {
         case .minTemp:
             value = "\(weather.main.tempMin) °C"
             
-        case .pressure:
-            value = "\(weather.main.pressure) hPa"
+        case .wind:
+            value = "\(weather.wind.speed) km/hr"
         }
         
         return value

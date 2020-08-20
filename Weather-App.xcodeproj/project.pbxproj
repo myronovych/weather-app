@@ -27,6 +27,7 @@
 		535965ED24EE445B006F7AA3 /* WeatherInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535965EC24EE445B006F7AA3 /* WeatherInfoTableViewCell.swift */; };
 		535965EF24EE5490006F7AA3 /* UIView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535965EE24EE5490006F7AA3 /* UIView+Parallax.swift */; };
 		535965F124EE54DD006F7AA3 /* ViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535965F024EE54DC006F7AA3 /* ViewController+Spinner.swift */; };
+		535965F324EE771D006F7AA3 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535965F224EE771D006F7AA3 /* Wind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		535965EC24EE445B006F7AA3 /* WeatherInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoTableViewCell.swift; sourceTree = "<group>"; };
 		535965EE24EE5490006F7AA3 /* UIView+Parallax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Parallax.swift"; sourceTree = "<group>"; };
 		535965F024EE54DC006F7AA3 /* ViewController+Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Spinner.swift"; sourceTree = "<group>"; };
+		535965F224EE771D006F7AA3 /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				53409A1B24EC6C9600D216C1 /* CityWeather.swift */,
 				53409A1D24EC6CC900D216C1 /* Weather.swift */,
 				53409A2124EC6D3D00D216C1 /* MainWeatherInfo.swift */,
+				535965F224EE771D006F7AA3 /* Wind.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				535965ED24EE445B006F7AA3 /* WeatherInfoTableViewCell.swift in Sources */,
 				534099F424EBE5C900D216C1 /* SceneDelegate.swift in Sources */,
 				53409A1824EC0B0000D216C1 /* Api.swift in Sources */,
+				535965F324EE771D006F7AA3 /* Wind.swift in Sources */,
 				53409A0F24EBEFD500D216C1 /* Coordinates.swift in Sources */,
 				535965E624ED2200006F7AA3 /* WeatherInfoItem.swift in Sources */,
 				53409A1A24EC562500D216C1 /* CityWeatherVC.swift in Sources */,

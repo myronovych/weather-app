@@ -9,7 +9,7 @@
 import UIKit
 
 enum WeatherItemType {
-    case currTemp, description, minTemp, maxTemp, pressure, humidity
+    case currTemp, description, minTemp, maxTemp, wind, humidity
 }
 
 class WeatherInfoItem: UIView {
@@ -43,8 +43,8 @@ class WeatherInfoItem: UIView {
         case .minTemp:
             headerLabel.text = "MIN TEMPERATURE"
             
-        case .pressure:
-            headerLabel.text = "PRESSURE"
+        case .wind:
+            headerLabel.text = "WIND"
         }
         
         infoLabel.text = value
