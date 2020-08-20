@@ -43,7 +43,7 @@ class CityWeatherVC: UIViewController {
             
             DispatchQueue.main.async {
                 self.configureWeatherInfos()
-                self.configureWeatherInfoStack()                
+                self.configureWeatherTableView()                
             }
         }
     }
@@ -69,25 +69,26 @@ class CityWeatherVC: UIViewController {
         ])
     }
     
-    private func configureWeatherInfoStack() {
+    private func configureWeatherTableView() {
         tableView.register(WeatherInfoTableViewCell.self, forCellReuseIdentifier: WeatherInfoTableViewCell.reuseID)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        tableView.tableFooterView = UIView()
-        tableView.allowsSelection = false
-        
         tableView.delegate = self
         tableView.dataSource = self
+
+        tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = 80
         
         let padding: CGFloat = 12
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: mapView.bottomAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding)
         ])
     }
     

@@ -52,7 +52,7 @@ class CityTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             cityImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            cityImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            cityImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding),
             
             cityImageView.widthAnchor.constraint(equalToConstant: imageSize),
             cityImageView.heightAnchor.constraint(equalToConstant: imageSize)
