@@ -32,7 +32,6 @@ class NetworkManager {
             do {
                 let decoder = JSONDecoder()
                 let weather = try decoder.decode(CityWeather.self, from: data)
-                print(weather)
                 completed(weather)
             } catch {
                 print("Error occured while decoding json \(error)")

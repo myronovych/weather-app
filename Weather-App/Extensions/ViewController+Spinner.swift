@@ -11,8 +11,8 @@ import UIKit
 fileprivate var aView: UIView?
 
 extension UIViewController {
+    
     func showSpinner() {
-        print("Showing ai")
         DispatchQueue.main.async {
             aView = UIView(frame: self.view.bounds)
             aView?.backgroundColor = .gray
