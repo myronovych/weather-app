@@ -14,7 +14,7 @@ class CitiesListVC: UITableViewController {
     var filteredCities = [City]()
     
     var isSearching = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearch()
@@ -57,8 +57,6 @@ class CitiesListVC: UITableViewController {
         
         tableView.rowHeight = 80
     }
-    
-    
 }
 
 // MARK: - TableView
@@ -88,7 +86,6 @@ extension CitiesListVC {
         destVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(destVC, animated: true)
     }
-    
 }
 
 // MARK: - UISearchResultsUpdating

@@ -15,7 +15,7 @@ class CityTableViewCell: UITableViewCell {
     
     let cityImageView = UIImageView(image: UIImage(systemName: "questionmark.diamond.fill")?.withTintColor(.gray))
     let cityLabel = UILabel()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureCell()
@@ -53,7 +53,7 @@ class CityTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             cityImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             cityImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
- 
+            
             cityImageView.widthAnchor.constraint(equalToConstant: imageSize),
             cityImageView.heightAnchor.constraint(equalToConstant: imageSize)
         ])
@@ -64,7 +64,7 @@ class CityTableViewCell: UITableViewCell {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         
         cityLabel.font = UIFont.systemFont(ofSize: 40)
-                
+        
         NSLayoutConstraint.activate([
             cityLabel.leadingAnchor.constraint(equalTo: cityImageView.trailingAnchor, constant: 12),
             cityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),

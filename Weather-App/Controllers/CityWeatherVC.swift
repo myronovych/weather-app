@@ -15,27 +15,19 @@ class CityWeatherVC: UIViewController {
     var cityWeather: CityWeather?
     
     let mapView = MKMapView()
-    var weatherInfoStack = UIStackView()
+    let tableView = UITableView()
     
     let weatherInfoTop = WeatherInfoView()
     let weatherInfoMiddle = WeatherInfoView()
     let weatherInfoBottom = WeatherInfoView()
     
-    let seperator = UIView()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-
-        // navigation bar problem
+        view.addParallax()
+        
         configureMapView()
         fetchWeather()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
     }
     
     private func fetchWeather() {
@@ -69,7 +61,6 @@ class CityWeatherVC: UIViewController {
         let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 3, longitudeDelta: 3))
         mapView.setRegion(region, animated: true)
         
-        
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -79,22 +70,24 @@ class CityWeatherVC: UIViewController {
     }
     
     private func configureWeatherInfoStack() {
-        view.addSubview(weatherInfoStack)
-        weatherInfoStack.distribution = .fillProportionally
-        weatherInfoStack.axis = .vertical
-        weatherInfoStack.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(WeatherInfoTableViewCell.self, forCellReuseIdentifier: WeatherInfoTableViewCell.reuseID)
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        weatherInfoStack.addArrangedSubview(weatherInfoTop)
-        weatherInfoStack.addArrangedSubview(weatherInfoMiddle)
-        weatherInfoStack.addArrangedSubview(weatherInfoBottom)
+        tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 80
         
         let padding: CGFloat = 12
         
         NSLayoutConstraint.activate([
-            weatherInfoStack.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: padding),
-            weatherInfoStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),
-            weatherInfoStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            weatherInfoStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+            tableView.topAnchor.constraint(equalTo: mapView.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
         ])
     }
     
@@ -103,4 +96,26 @@ class CityWeatherVC: UIViewController {
         weatherInfoMiddle.setLabels(weather: cityWeather!, firstType: .minTemp, secondType: .maxTemp)
         weatherInfoBottom.setLabels(weather: cityWeather!, firstType: .humidity, secondType: .pressure)
     }
+}
+
+extension CityWeatherVC: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: WeatherInfoTableViewCell.reuseID) as! WeatherInfoTableViewCell
+        
+        switch indexPath.row {
+        case 0:
+            cell.weatherInfo = weatherInfoTop
+        case 1:
+            cell.weatherInfo = weatherInfoMiddle
+        default:
+            cell.weatherInfo = weatherInfoBottom
+        }
+        
+        return cell
+    }
+    
 }
