@@ -14,7 +14,7 @@ class NetworkManager {
     
     private init() {}
     
-    func getWeather(coordinates: Coordinates, completed: @escaping (CityWeather?) -> Void) {
+    func getWeather(coordinates: Coord, completed: @escaping (CityWeather?) -> Void) {
         
         guard let url = URL(string: Api.baseURL + "weather?lat=\(coordinates.lat)&lon=\(coordinates.lon)&appid=\(Api.openWeatherApiKey)&units=metric") else {
             completed(nil)

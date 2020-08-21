@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct City: Decodable {
-    let name: String
-    let coord: Coordinates
+class City: Object, Decodable {
+    @objc dynamic var name: String?
+    @objc dynamic var coord: Coord?
 }

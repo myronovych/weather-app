@@ -32,18 +32,24 @@ class CityWeatherVC: UIViewController {
     
     private func fetchWeather() {
         self.showSpinner()
-        NetworkManager.shared.getWeather(coordinates: city.coord) {  [weak self] weather in
+        
+        guard let coord = city.coord else {
+            hideSpinner()
+            return
+        }
+        
+        NetworkManager.shared.getWeather(coordinates: coord) {  [weak self] weather in
             guard let self = self else { return }
-            
+
             self.hideSpinner()
-            
+
             guard let weather = weather else { return }
-            
+
             self.cityWeather = weather
-            
+
             DispatchQueue.main.async {
                 self.configureWeatherInfos()
-                self.configureWeatherTableView()                
+                self.configureWeatherTableView()
             }
         }
     }
@@ -53,7 +59,7 @@ class CityWeatherVC: UIViewController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         let cityPin = MKPointAnnotation()
-        let location = CLLocationCoordinate2D(latitude: city.coord.lat, longitude: city.coord.lon)
+        let location = CLLocationCoordinate2D(latitude: city.coord?.lat ?? 0, longitude: city.coord?.lon ?? 0)
         cityPin.coordinate = location
         cityPin.title = city.name
         mapView.addAnnotation(cityPin)
