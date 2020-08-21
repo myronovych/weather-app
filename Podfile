@@ -6,6 +6,6 @@ target 'Weather-App' do
   use_frameworks!
 
   # Pods for Weather-App
-pod 'RealmSwift'
+pod 'RealmSwift', '5.3.2'
 
 end
