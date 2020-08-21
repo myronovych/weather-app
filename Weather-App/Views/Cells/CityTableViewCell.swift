@@ -13,7 +13,7 @@ class CityTableViewCell: UITableViewCell {
     
     var city: City?
     
-    let cityImageView = UIImageView(image: UIImage(systemName: "questionmark.diamond.fill")?.withTintColor(.gray))
+    var cityImageView = UIImageView(image: UIImage(systemName: "questionmark.diamond.fill"))
     let cityLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -29,7 +29,6 @@ class CityTableViewCell: UITableViewCell {
         self.city = city
         
         cityLabel.text = city.name
-        
         let imageURL = row % 2 == 0 ? ImageUrl.evenImageURL : ImageUrl.oddImageURL
         
         NetworkManager.shared.downloadImage(urlString: imageURL) { [weak self] image in
@@ -71,5 +70,9 @@ class CityTableViewCell: UITableViewCell {
             
             cityLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    override func prepareForReuse() {
+        cityImageView.image = UIImage(systemName: "questionmark.diamond.fill")
     }
 }

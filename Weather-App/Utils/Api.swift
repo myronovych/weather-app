@@ -15,7 +15,6 @@ enum Api {
 
 enum ImageUrl {
     static let oddImageURL = "https://infotech.gov.ua/storage/img/Temp1.png"
-    
     static let evenImageURL = "https://infotech.gov.ua/storage/img/Temp3.png"
 }
 

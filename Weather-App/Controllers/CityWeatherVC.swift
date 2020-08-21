@@ -35,18 +35,19 @@ class CityWeatherVC: UIViewController {
         
         guard let coord = city.coord else {
             hideSpinner()
+            navigationController?.popViewController(animated: true)
             return
         }
         
         NetworkManager.shared.getWeather(coordinates: coord) {  [weak self] weather in
             guard let self = self else { return }
-
+            
             self.hideSpinner()
-
+            
             guard let weather = weather else { return }
-
+            
             self.cityWeather = weather
-
+            
             DispatchQueue.main.async {
                 self.configureWeatherInfos()
                 self.configureWeatherTableView()
@@ -59,7 +60,9 @@ class CityWeatherVC: UIViewController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         let cityPin = MKPointAnnotation()
-        let location = CLLocationCoordinate2D(latitude: city.coord?.lat ?? 0, longitude: city.coord?.lon ?? 0)
+        
+        guard let coord = city.coord else { return }
+        let location = CLLocationCoordinate2D(latitude: coord.lat, longitude: coord.lon)
         cityPin.coordinate = location
         cityPin.title = city.name
         mapView.addAnnotation(cityPin)
@@ -82,7 +85,7 @@ class CityWeatherVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         tableView.tableFooterView = UIView()
         tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
@@ -90,11 +93,9 @@ class CityWeatherVC: UIViewController {
         tableView.layer.cornerRadius = 20
         tableView.layer.borderWidth = 0.5
         
-        let padding: CGFloat = 12
-        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -25),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -126,5 +127,4 @@ extension CityWeatherVC: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
 }

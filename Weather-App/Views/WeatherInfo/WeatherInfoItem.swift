@@ -58,7 +58,7 @@ class WeatherInfoItem: UIView {
     private func configureHeader() {
         addSubview(headerLabel)
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         headerLabel.textColor = .lightGray
         headerLabel.font = UIFont.systemFont(ofSize: 13)
         headerLabel.minimumScaleFactor = 0.4
@@ -67,13 +67,14 @@ class WeatherInfoItem: UIView {
         NSLayoutConstraint.activate([
             headerLabel.topAnchor.constraint(equalTo: topAnchor),
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            headerLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
     private func configureInfoLabel() {
         addSubview(infoLabel)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         infoLabel.font = UIFont.systemFont(ofSize: 30)
         infoLabel.minimumScaleFactor = 0.4
         infoLabel.adjustsFontSizeToFitWidth = true

@@ -9,7 +9,7 @@
 import UIKit
 
 class WeatherInfoView: UIView {
-
+    
     var leftInfo = WeatherInfoItem()
     var rightInfo = WeatherInfoItem()
     
@@ -71,7 +71,7 @@ class WeatherInfoView: UIView {
             
         case .maxTemp:
             value = "\(weather.main.tempMax) °C"
-
+            
         case .minTemp:
             value = "\(weather.main.tempMin) °C"
             

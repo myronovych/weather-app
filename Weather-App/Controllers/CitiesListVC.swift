@@ -19,6 +19,7 @@ class CitiesListVC: UITableViewController {
         configureSearch()
         fetchAllCities()
         configureTable()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,8 +29,11 @@ class CitiesListVC: UITableViewController {
     
     private func fetchAllCities() {
         cities = realm.objects(City.self).sorted(byKeyPath: "name", ascending: true)
-        if !cities!.isEmpty { return }
         
+        if cities!.isEmpty { fetchCitiesFromJSON() }
+    }
+    
+    private func fetchCitiesFromJSON() {
         if let url = Bundle.main.url(forResource: "city.list", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
@@ -47,12 +51,11 @@ class CitiesListVC: UITableViewController {
     
     private func configureSearch() {
         let searchController = UISearchController()
-        searchController.searchBar.placeholder = "Enter city"
-        searchController.obscuresBackgroundDuringPresentation = false
-        
+        navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
         
-        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "Enter city"
+        searchController.obscuresBackgroundDuringPresentation = false
     }
     
     private func configureTable() {
@@ -78,18 +81,18 @@ extension CitiesListVC {
         return cell
     }
     
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-    
-            let destVC = CityWeatherVC()
-            guard let cities = cities else { return }
-            let city = cities[indexPath.row]
-            destVC.title = city.name
-    
-            destVC.city = city
-            destVC.navigationItem.largeTitleDisplayMode = .never
-            navigationController?.pushViewController(destVC, animated: true)
-        }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let destVC = CityWeatherVC()
+        guard let cities = cities else { return }
+        let city = cities[indexPath.row]
+        destVC.title = city.name
+        
+        destVC.city = city
+        destVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(destVC, animated: true)
+    }
 }
 
 // MARK: - UISearchResultsUpdating
