@@ -101,8 +101,8 @@ extension CitiesListVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text!.count == 0 {
             fetchAllCities()
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
