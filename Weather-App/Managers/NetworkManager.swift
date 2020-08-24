@@ -66,9 +66,8 @@ class NetworkManager {
             
             self.cache.setObject(image, forKey: NSString(string: urlString))
             
-            DispatchQueue.main.async {
-                completed(image)
-            }
+            completed(image)
+            
         }
         
         task.resume()
