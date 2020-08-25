@@ -44,7 +44,17 @@ class CityWeatherVC: UIViewController {
             
             self.hideSpinner()
             
-            guard let weather = weather else { return }
+            guard let weather = weather else {
+                let ac = UIAlertController(title: "Network error", message: "Problems with network connection", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                })
+                DispatchQueue.main.async {
+                    self.present(ac, animated: true)
+                }
+                
+                return
+            }
             
             self.cityWeather = weather
             
